@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px; }
+        button { padding: 10px 20px; margin: 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Monster Game!</h1>
+    <button onclick="startGame()">Start Game</button>
+    <script>
+        let health = 100;
+        let monsterHealth = 100;
+
+        function startGame() {
+            let userChoice = prompt("Do you want to play? (YES or NO)").toUpperCase();
+            if (userChoice === "YES") {
+                alert("You have entered the game.");
+                game();
+            } else if (userChoice === "NO") {
+                alert("You have decided not to start the game.");
+            } else {
+                alert("Error: Invalid input. Please enter YES or NO.");
+                startGame();
+            }
+        }
+
+        function game() {
+            let userChoice2 = prompt("Choose a monster:\nEnter [1] for Monster 1\nEnter [2] for Monster 2");
+            if (userChoice2 == "1") {
+                monster1();
+            } else if (userChoice2 == "2") {
+                monster2();
+            } else {
+                alert("Invalid choice. Please select 1 or 2.");
+                game();
+            }
+        }
+
+        function monster1() {
+            let userChoice3 = prompt("This is a dangerous monster. Press [F] to fight or [R] to run.").toUpperCase();
+            if (userChoice3 === "F") {
+                alert("Be careful! This monster is dangerous. Your health: " + health);
+                let userChoice4 = prompt("Are you ready? (YES or NO)").toUpperCase();
+                if (userChoice4 === "YES") {
+                    let answer = prompt("Solve: What is the derivative of 2^3?");
+                    if (answer == "24") {
+                        alert("Correct! You defeated the monster.");
+                        con();
+                    } else {
+                        lost();
+                    }
+                } else if (userChoice4 === "NO") {
+                    replayGame();
+                } else {
+                    alert("Invalid input.");
+                    monster1();
+                }
+            } else if (userChoice3 === "R") {
+                alert("Oops! This monster is too fast. You can't run.");
+                lost();
+            } else {
+                alert("Invalid input. Please enter F or R.");
+                monster1();
+            }
+        }
+
+        function monster2() {
+            alert("This monster is very strong. You must escape!");
+            let userChoice = prompt("Escape? (YES or NO)").toUpperCase();
+            if (userChoice === "YES") {
+                let path = prompt("Choose your path:\n[1] Math path\n[2] Puzzle path");
+                if (path == "1") {
+                    let answer = prompt("Solve: 2 * 8 * 9 + 2?");
+                    if (answer == "146") con(); else lost();
+                } else if (path == "2") {
+                    alert("Solve the puzzle to escape!");
+                    let answer = prompt("What is the most commonly used computer language?");
+                    if (answer == "01") con(); else lost();
+                } else {
+                    alert("Invalid choice.");
+                    monster2();
+                }
+            } else if (userChoice === "NO") {
+                alert("You missed an exciting adventure!");
+                endGame();
+            } else {
+                alert("Invalid input. Please enter YES or NO.");
+                monster2();
+            }
+        }
+
+        function lost() {
+            alert("You lost the game. Better luck next time!");
+            replayGame();
+        }
+
+        function con() {
+            alert("Congratulations! You win!");
+            replayGame();
+        }
+
+        function replayGame() {
+            let choice = prompt("Do you want to play again? (RETRY or E to exit)").toUpperCase();
+            if (choice === "RETRY") startGame();
+            else if (choice === "E") endGame();
+            else {
+                alert("Invalid input.");
+                replayGame();
+            }
+        }
+
+        function endGame() {
+            alert("Thank you for playing! Have a nice day!");
+        }
+    </script>
+</body>
+</html>
